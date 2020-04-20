@@ -16,3 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/worldwide', 'CovidController@worlwide');
+
+Route::get('/hello', function () {
+    echo '<xmp>: '. print_r("Hola soy Cristian", true) .'</xmp>';
+});
+
+
+Route::get('/hi', function () {
+    echo '<xmp>: '. print_r("hi", true) .'</xmp>';
+    $users = DB::table('laravel')->get();
+    dd($users);
+});

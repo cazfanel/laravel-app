@@ -2,12 +2,12 @@ version: '3'
 services:
 
   #PHP Service
-  app:
+  appJenk:
     build:
       context: .
       dockerfile: Dockerfile
     image: digitalocean.com/php
-    container_name: app
+    container_name: appJenk
     restart: unless-stopped
     tty: true
     environment:
@@ -21,9 +21,9 @@ services:
       - app-network
 
   #Nginx Service
-  webserver:
+  webserverJenk:
     image: nginx:alpine
-    container_name: webserver
+    container_name: webserverJenk
     restart: unless-stopped
     tty: true
     ports:
@@ -36,9 +36,9 @@ services:
       - app-network
 
   #MySQL Service
-  db:
+  dbJenk:
     image: mysql:5.7.22
-    container_name: db
+    container_name: dbJenk
     restart: unless-stopped
     tty: true
     ports:
@@ -54,21 +54,6 @@ services:
     networks:
       - app-network
 
-  #jenkins
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    user: jenkins
-    volumes:
-      - jenkins_data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      JENKINS_HOST_HOME: "/data/jenkins"
-    ports:
-      - "8090:8080"
-      - "5000:5000"
-      - "50000:50000"
-
 #Docker Networks
 networks:
   app-network:
@@ -77,6 +62,4 @@ networks:
 #Volumes
 volumes:
   dbdata:
-    driver: local
-  jenkins_data:
     driver: local

@@ -24,11 +24,3 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ADD nginx/nginx.conf /etc/nginx/nginx.conf
-ADD nginx/whatsapp.conf /etc/nginx/conf.d/whatsapp.conf
-ADD supervisord.ini /etc/supervisord.d/supervisord.ini
-ADD php/php-fpm/www.conf /etc/php-fpm.d/www.conf
-ADD php/php-fpm/php-fpm.conf /etc/php-fpm.conf
-ADD php/php.ini /etc/php.ini
-
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]

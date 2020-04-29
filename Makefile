@@ -1,2 +1,2 @@
-build:
-	@docker-compose up -d --build
+build-image:
+	docker build ./docker/app -t laravel-app
